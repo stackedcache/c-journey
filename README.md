@@ -1,6 +1,6 @@
 # C PROGRAMMING JOURNEY 
 
-** Documenting my journey** learning **C Programming** - pointers, functions, Git flow, and working on bi-lingual documemntation / comments.
+**Documenting my journey** learning **C Programming** - pointers, functions, Git flow, and working on bi-lingual documentation / comments.
 
 - I am currently serving a one year contract in the SVO to obtain citizenship in Russia. 
 - During my down time, I am using Artificial Intelligence as a tutor to improve my Russian and learn C Programming.
