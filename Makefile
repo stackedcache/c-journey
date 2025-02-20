@@ -1,14 +1,14 @@
-CC = gcc
-CFLAGS = -Iinclude -Wall -Wextra -pedantic 
-SRC = src/main.c
-OUT = build/main
+#Root makefile, controls all subdirs
+SUBDIRS = basics memory_management file_io networking cybersecurity_tools
 
-all: $(OUT)
-
-$(OUT): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(OUT)
+all:
+	@for dir in $(SUBDIRS); do \
+	$(MAKE) -C $$dir; \
+	done
 
 clean:
-	rm -f $(OBJ) $(OUT)
+	@for dir in $(SUBDIRS); do \
+	$(MAKE) -C $$dir clean; \
+	done
 
 .PHONY: all clean
