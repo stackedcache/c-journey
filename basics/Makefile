@@ -1,12 +1,11 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -pedantic -I../include
-SRC = $(wildcard *.c)
-OUT = ../build/basics_demo
+CFLAGS = -Wall -Wextra -pedantic 
+TARGETS = variable_types control_flow loops functions arrays_strings pointers_intro
 
-all: $(OUT)
+all: $(TARGETS)
 
-$(OUT): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) -o $(OUT)
+$(TARGETS): %: %/%.c
+	$(CC) $(CFLAGS) -o build/$@ $</$@.c
 
 clean:
 	rm -f $(OUT)
