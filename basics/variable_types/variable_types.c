@@ -74,7 +74,7 @@ int main(){
 
     // Practice Explicit casting 
     // Cast Double to Int
-    printf("Casting practice. Here doub is casted to an integer," 
+    printf("Casting practice. Here doub is casted to an integer, " 
             "and b_global is casted to a character\n\n");
 
     int casted_int = (int)doub;
