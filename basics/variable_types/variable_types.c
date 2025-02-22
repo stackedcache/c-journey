@@ -129,11 +129,11 @@ printf("Int variable a_global has been modified to: %d\n\n\n", a_global);
 
 // Use a constant variable in another function and show how it retains value over calls
 // Static int
-printf("Now we demonstrate a static integer variable," "
-and watch how it changes across function calls.\n\n");
+printf("Now we demonstrate a static integer variable," 
+"and watch how it changes across function calls.\n\n");
 
-printf("Static int staticCount is defined as 0 initially," "
-and the function adds 1 each call. We call it 3 times.\n\n");
+printf("Static int staticCount is defined as 0 initially," 
+"and the function adds 1 each call. We call it 3 times.\n\n");
 
 demonstrate_static();
 demonstrate_static();
