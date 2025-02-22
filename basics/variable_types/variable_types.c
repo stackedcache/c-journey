@@ -117,7 +117,7 @@ int main(){
 
 
     printf("Now we use a function to modify a global variable.\n"
-            "The original value is %d, and we pass an integer pointer to a"
+            "The original value is %d, and we pass an integer pointer to a "
             "function to change the value.\n\n", a_global);
 
     // Create a pointer to pass the value to the function 
@@ -129,10 +129,10 @@ int main(){
 
     // Use a constant variable in another function and show how it retains value over calls
     // Static int
-    printf("Now we demonstrate a static integer variable," 
+    printf("Now we demonstrate a static integer variable, " 
             "and watch how it changes across function calls.\n\n");
 
-    printf("Static int staticCount is defined as 0 initially," 
+    printf("Static int staticCount is defined as 0 initially, " 
             "and the function adds 1 each call. We call it 3 times.\n\n");
 
     demonstrate_static();
