@@ -5,19 +5,28 @@
     Write a CLI menu using switch-case
         The user picks 1, 2, or 3 → output different responses.
         Add a default case for invalid input.
+    
+    - Completed -- control_flow_challenges.c code -- could go deeper with input validation here, but basic flow understood.
 
     Write an authentication system using if-else
         Ask the user for a password.
         If "letmein", print "Access Granted".
         Else, print "Access Denied".
+    
+    - Completed with advanced checks from level 2 -- control_flow_challenges.c code
 
 🛠️ Level 2 – Thinking Like a Hacker Simulate a Login Bypass
 
     Write an if (strcmp(password, "letmein")) statement.
     Experiment with passing "letmein\0" or "letmeinanything"—see what happens.
+    
+    - Completed -- control_flow_challenges.c code 
 
     Exploit a switch-case Fall-Through Bug
         Create a switch where missing a break lets a lower-level user get admin privileges.
+    
+    - Skipping this challenge -- I understand that missing breaks can cause fallthrough bugs 
+
 
 💣 Level 3 – Breaking Control Flow Modify Execution Flow in GDB
 
@@ -45,30 +54,30 @@
 - Will try now to wrape in while with control variable and see if I can get running 
 
 - Ok.. i wrapped in while, and with valid input all works but if invalid, I have an infinite loop condition for some reason... 
--- Will check into this to get ideas from AI without providing my code and trying to debug just thinking
--- I have a control variable set to 1, and set to 0 if valid input given. 
--- Then switch default case just says invalid, and does not change control variable 
--- So not sure why it starts infinite looping 
+- Will check into this to get ideas from AI without providing my code and trying to debug just thinking
+- I have a control variable set to 1, and set to 0 if valid input given. 
+- Then switch default case just says invalid, and does not change control variable 
+- So not sure why it starts infinite looping 
 
--- OK, got it. AI gave hints and I determined that it's because scanf is not cleaning the input so;
--- It's just re-reading the same bad input over and over again. Need to sanitize user input 
+- OK, got it. AI gave hints and I determined that it's because scanf is not cleaning the input so;
+- It's just re-reading the same bad input over and over again. Need to sanitize user input 
 
--- Ok, there are multiple ways to sanitize input... we are trying to focus on control flow here and just get used to 
--- writing swtich cases, but this is also valuable.
+- Ok, there are multiple ways to sanitize input... we are trying to focus on control flow here and just get used to 
+- writing swtich cases, but this is also valuable.
 
--- If knowing how to sanitize input, we can know where others might fail.
+- If knowing how to sanitize input, we can know where others might fail.
 
--- So what is the problem? We want to take input from the user, and make sure in this case it is ONLY an integer..
--- fgets is possible, and loop is possible to read and clear. 
--- Just to move on to next concepts, in the default case I will read and clean scanf .. i think
--- No, needed to put scanf within an if, check that it != 1 and this will clean bugger with getchar()
--- This moves to default switch case 
--- because choice is not set, default case is hit, valid check still 1, while repeats
--- 1, 2, or 3 hits valid case to break while 
+- So what is the problem? We want to take input from the user, and make sure in this case it is ONLY an integer..
+- fgets is possible, and loop is possible to read and clear. 
+- Just to move on to next concepts, in the default case I will read and clean scanf .. i think
+- No, needed to put scanf within an if, check that it != 1 and this will clean bugger with getchar()
+- This moves to default switch case 
+- because choice is not set, default case is hit, valid check still 1, while repeats
+- 1, 2, or 3 hits valid case to break while 
 
--- scanf doesn't behave exactly how i want. example, if user enteres 1rrewtw it will just read 1. 
--- However, for a basic program where we're really just practicing switch case, this is ok for now
--- for the next challenge, I will practice using fgets() and see if behavior is improved (depending on challenge) 
+- scanf doesn't behave exactly how i want. example, if user enteres 1rrewtw it will just read 1. 
+- However, for a basic program where we're really just practicing switch case, this is ok for now
+- for the next challenge, I will practice using fgets() and see if behavior is improved (depending on challenge) 
 
 
 # CHALLENGE 1 PT 2 
@@ -225,25 +234,25 @@ plastid-debian@plastid-linux:~/projects/cjourney/basics$
 - I will now show my code to AI, ask about this double enter thing to see if I can figure out, and then sleep
 
 - Right now, I am focusing on why the prompt "hangs" sometimes after input is too long as in: 
--- The prompt does not print right away after an input that is long. It prints the "too long" message, then sits, waiting for enter
--- Simply puts() instead of print did not fix, AI suggesting to flush stdout, will try
--- fflush(stdout); after the puts also does not solve it. Trying fflush(stdout) after the too long
--- also not a fix!
--- AI suggested a more "aggressive" flush with this method
+- The prompt does not print right away after an input that is long. It prints the "too long" message, then sits, waiting for enter
+- Simply puts() instead of print did not fix, AI suggesting to flush stdout, will try
+- fflush(stdout); after the puts also does not solve it. Trying fflush(stdout) after the too long
+- also not a fix!
+- AI suggested a more "aggressive" flush with this method
 
 ```
 int c;
 while ((c = getchar()) != '\n' && c != EOF);
 ```
 
--- This does stop the problem! Why? 
--- AI says stdin and terminal buffering 
--- When entering more than expected by fgets, stdin stores ALL of it in terminal 
--- fgets() reads ONLY what it can get .. 7 chars + \0 (size 8)
--- all of the extra STAYS in stdin
--- getchar() reads one character at a time 
--- long story short, something about the buffering of stdout / stdin was causing this
--- For now, because main focus is just control flow, not going to super deep dive this
+- This does stop the problem! Why? 
+- AI says stdin and terminal buffering 
+- When entering more than expected by fgets, stdin stores ALL of it in terminal 
+- fgets() reads ONLY what it can get .. 7 chars + \0 (size 8)
+- all of the extra STAYS in stdin
+- getchar() reads one character at a time 
+- long story short, something about the buffering of stdout / stdin was causing this
+- For now, because main focus is just control flow, not going to super deep dive this
 
 - We still have a problem -- if user enters 'letmein-bunchofjunkextra' -- it still grants access
 - To fix this, we should store in fgets enough for both \n and \0 (size 9)
@@ -253,4 +262,81 @@ while ((c = getchar()) != '\n' && c != EOF);
 - Issue is my nested ladders are a bit ugly and could probably be done better
 - We have gone way deeper than basic if else compare check for this basic section, but thats not horrible.
 - I asked AI to clean my code up, and will possibly come back to clean this later.
-- For now, committing and moving on  
+- For now, committing and moving on 
+
+# CHALLENGE 3 - GDB DEBUGGING AND HACKING 
+
+- Will work with AI to step through and 'hack' with gdb. New code for this one.
+- Return 1 indicates failure, so may be used to terminate on something like authentication checking
+- bypassing this we can possibly hijack control flow
+
+- Created gdb-control-flow-tests.c
+- This code defines checkpassword() and authenticate() functions
+- in authenticate(), if checkpassword() returns 1, authenticate  prints access denied and returns 1
+- checkpassword() is simply coded to return 1
+- after the if check in authneticate(), i added print HACKED! just to see if we can bypass
+- by setting break in gdb at authenticate, and changing the register value from 1 to 0 (because checkpassword did return 1)
+  we bypass control flow and print HACKED.
+
+- Here is how that looked: 
+
+```
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ gcc -g ./gdb-controlflow-tests.c -o gdb-control-flow-tests
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ gdb ./gdb-control-flow-tests 
+GNU gdb (Debian 13.1-3) 13.1
+Copyright (C) 2023 Free Software Foundation, Inc.
+
+<snip>
+
+Reading symbols from ./gdb-control-flow-tests...
+
+(gdb) break authenticate
+Breakpoint 1 at 0x1148: file ./gdb-controlflow-tests.c, line 8.
+
+(gdb) run
+Starting program: /home/plastid-debian/projects/cjourney/basics/control_flow/gdb-control-flow-tests 
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, authenticate () at ./gdb-controlflow-tests.c:8
+
+8	    if (checkpassword() == 1) {
+
+(gdb) step
+checkpassword () at ./gdb-controlflow-tests.c:4
+4	    return 1;
+
+// CHECK WHAT THE REGISTER HOLDS, STEP UNTIL ITS SET TO 1:
+(gdb) info registers rax
+rax            0x0                 0
+eax            0x0                 0
+
+(gdb) step
+5	}
+
+(gdb) info registers rax
+rax            0x1                 1
+
+// SET THE REGISTER TO 0 TO BYPASS FAILURE 
+(gdb) set $rax=0
+
+// CHECK REGISTERS 
+(gdb) info registers rax
+rax            0x0                 0
+
+// CONTINUE TO SEE OUTPUT 
+(gdb) continue
+Continuing.
+
+
+
+HACKED!!!!!
+
+
+[Inferior 1 (process 88466) exited normally]
+(gdb) 
+
+
+- Here we can see how manipulating register values can modify program control flow 
+
+
