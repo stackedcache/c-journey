@@ -1,4 +1,4 @@
-#INTRO 
+# INTRO 
 
 - Note: This file contains the challenges I went through, and a bunch of notes I took as I went through them.
 - There is a lot of "junk" in this file, like my thoughts and roadblocks I hit before getting to the code you see in .c files of this section
