@@ -1,3 +1,9 @@
+#INTRO 
+
+- Note: This file contains the challenges I went through, and a bunch of notes I took as I went through them.
+- There is a lot of "junk" in this file, like my thoughts and roadblocks I hit before getting to the code you see in .c files of this section
+- If it's interesting to you, read! Probably it won't be though, but I'm leaving it just for history and my self to refer to for now. Enjoy! :) 
+
 💻 Coding Challenges (To Cement Control Flow)
 
 🔥 Level 1 – Basic Reinforcement
@@ -335,7 +341,7 @@ HACKED!!!!!
 
 [Inferior 1 (process 88466) exited normally]
 (gdb) 
-
+```
 
 - Here we can see how manipulating register values can modify program control flow 
 
