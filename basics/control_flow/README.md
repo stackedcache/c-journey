@@ -13,11 +13,11 @@ It may not be useful to anyone and has a lot of 'junk' -- but it does show my mi
 The biggest breakthrough for me was using GDB (combined with help from AI) to determine the location of a return address after I set up a vulnderable function 
 in the jump-table-hacking.c program. 
 
-In Substack I (will) have written more about this. You can read that post [link.com](here). *To be added when finished*
+In Substack I (will) have written more about this. You can read that post [here](link.com). *To be added when finished*
 
 I don't fully understand it yet -- the program was written and compiled in a vulnerable way -- and this was much more advanced than basic control flow in C.
 
-Still, it was an invaluable experience and as mentioned in my previous [https://stackedcache.substack.com/](substacks), exposure is all that matters sometimes on the path to mastery.
+Still, it was an invaluable experience and as mentioned in my previous [Substacks](https://stackedcache.substack.com/), exposure is all that matters sometimes on the path to mastery.
 
 At least that's what I think for now.
 
