@@ -3,6 +3,7 @@
 - Note: This file contains the challenges I went through, and a bunch of notes I took as I went through them.
 - There is a lot of "junk" in this file, like my thoughts and roadblocks I hit before getting to the code you see in .c files of this section
 - If it's interesting to you, read! Probably it won't be though, but I'm leaving it just for history and my self to refer to for now. Enjoy! :) 
+- Check out the Substack post on this section [Here!](https://stackedcache.substack.com/p/hijacking-execution-flow)
 
 💻 Coding Challenges (To Cement Control Flow)
 

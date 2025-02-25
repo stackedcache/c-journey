@@ -13,7 +13,7 @@ It may not be useful to anyone and has a lot of 'junk' -- but it does show my mi
 The biggest breakthrough for me was using GDB (combined with help from AI) to determine the location of a return address after I set up a vulnderable function 
 in the jump-table-hacking.c program. 
 
-In Substack I (will) have written more about this. You can read that post [here](link.com). *To be added when finished*
+In Substack I have written more about this. You can read that post [here](https://stackedcache.substack.com/p/hijacking-execution-flow). 
 
 I don't fully understand it yet -- the program was written and compiled in a vulnerable way -- and this was much more advanced than basic control flow in C.
 
