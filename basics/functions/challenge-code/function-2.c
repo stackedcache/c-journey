@@ -4,11 +4,11 @@
 // Write another function modifyByPointer() that takes an integer by pointer (reference) and modifies it 
 // Inside main() print the values before and after calling the function 
 
-int modifyValue(int a){
+void modifyValue(int a){
     a = 100;
 }
 
-int modifyByPointer(int *a){
+void modifyByPointer(int *a){
     *a = 100;
 }
 
