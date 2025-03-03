@@ -92,6 +92,8 @@ void overflowFunction();
 
 🔹 9. Return Address Manipulation (Beginner)
 Task:
+    
+    *NOTE*: Completed this challenge in challenge 7, therefore will not repeat.
 
     Call a function normally.
     Print its return address inside GDB using info frame.
