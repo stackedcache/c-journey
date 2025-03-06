@@ -37,8 +37,8 @@ int main(){
     printf("Value of num: %d\n", num);
     printf("Address of num: %p\n\n", &num);
 
-    // This shows the memory address of the numPtr variable 
-    printf("Address of *numPtr: %p\n", &numPtr);
+    // This shows the memory address of the numPtr variable (a pointer to an int)
+    printf("Address of numPtr: %p\n", &numPtr);
 
     // This shows the value stored in the numPtr variable
     printf("Value of *numPtr: %p\n", numPtr);
@@ -53,7 +53,7 @@ int main(){
 **BREAKDOWN:**
 
 - `int *numPtr = &num` -- Declares a pointer to an integer, and stores the memory address of 'num' in 'numPtr'
-- `*numPtr*` -- "Dereferencing" -> Accesses the value at the stored address. (93 in this case)
+- `*numPtr` -- "Dereferencing" -> Accesses the value at the stored address. (93 in this case)
 
 **OUTPUT OF THE EXAMPLE PROGRAM**
 
@@ -103,7 +103,7 @@ Address: 0x7ffe4df922b4, Value: 60
 ### KEY TAKEAWAYS: 
 
 - `numbersPtr + i` -- moves the pointer forward in memory. Each step is sizeof(int) bytes.
-- `*(numbersPtr + i) -- Dereferences the pointer to get the value. 
+- `*(numbersPtr + i)` -- Dereferences the pointer to get the value. 
 
 ```C
     int numbers[] = {10, 20, 30, 40, 50, 60};
@@ -129,7 +129,8 @@ Address: 0x7ffe4df922b4, Value: 60
 
 - Dynamic memory allocation gives full control over memory but you must `free()` it. 
 - This allows the allocation of space at runtime instead of hardcoding array values 
-- If you don't 'free' memory, this causes memory leaks. Memory leaks cause gradual RAM exhaustion and potential crashes. 
+- If you dont 'free' allocated memory, it causes memory leaks. 
+- Over time, memory leaks cause gradual RAM exhaustion and potential crashes. 
 
 ### WHY IS MALLOC() USEFUL?
 
@@ -181,5 +182,29 @@ int main() {
 
 - Function Pointers = flexibility in legit programming + a weapon for exploitation 
 - Understanding these concepts allows for adequate defensive measures to be taken 
+
+**EXAMPLE FUNCTION POINTER**
+
+```C
+#include <stdio.h> 
+
+// This program illustrates a basic function pointer 
+
+void hello(){
+    printf("HELLO!\n");
+}
+
+int main(){
+    // Here we declare a function pointer 
+    // The parenthesis in (*funcPtr)() are important because it tells us
+    // that funcPtr is a pointer which takes no arguments
+    // So funcPtr is a pointer to a function that takes no arguments and returns void 
+    void (*funcPtr)() = hello; // In C, function names act as pointers to the function's address 
+    
+    funcPtr(); // Calls hello() through pointer funcPtr    
+    
+    return 0;
+}
+```
 
 
