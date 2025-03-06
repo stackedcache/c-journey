@@ -121,6 +121,65 @@ Address: 0x7ffe4df922b4, Value: 60
     - For example, `numbers = numbers + 1` --> INVALID
 
 - However you CAN modify numbersPtr
+    - `numbersPtr = numberPtr + 1` --> VALID, and now points to numbers[1]
+    - numbers ALWAYS points to the start of the array, no moving allowed
+    - numbersPtr can be moved freely to point to different elements
 
+## POINTERS AND MALLOC 
+
+- Dynamic memory allocation gives full control over memory but you must `free()` it. 
+- This allows the allocation of space at runtime instead of hardcoding array values 
+- If you don't 'free' memory, this causes memory leaks. Memory leaks cause gradual RAM exhaustion and potential crashes. 
+
+### WHY IS MALLOC() USEFUL?
+
+- Flexibility: no need to hard code values or predefine large arrays -- allocate what is needed 
+- Efficient memory usage: Saves RAM in embedded systems where memory is limited 
+- Hacking and Exploitation: Controlling heap allocation allows
+    - Crafting heap-based buffer overflows (exploit programs dynamically)
+    - Manipulate heap structures for privilege escalation 
+    - Bypassing ASLR (Address Space Layout Randomization) with memory spraying techniques 
+    - Understanding these concepts allows for adequate defense against these techniques 
+
+- We will expand on `malloc()` in subsequent sections 
+
+**EXAMPLE OF MALLOC**
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int *ptr = (int *)malloc(3 * sizeof(int)); // Note that we 'cast' malloc() with (int *)malloc(...) because malloc() returns void *. 
+
+    // Checks if malloc() failed 
+    if (!ptr) {
+        printf("Memory allocation failed\n");
+        return 1;
+    }
+
+    for (int i = 0; i < 3; i++) {
+        ptr[i] = i * 10;
+        printf("ptr[%d] = %d\n", i, ptr[i]);
+    }
+
+    free(ptr); // Always free memory
+
+    return 0;
+}
+```
+
+## FUNCTION POINTERS 
+
+- We worked a bit with function pointers in the functions section of this repository. 
+- Pointers can also store function addresses 
+- This is useful for callbacks and ROP (Return-Oriented Programming)
+    - 'Callbacks' are useful for event-handling, asynchronous programming, and custom behavior.
+        - OS internals, modular code, etc.
+    - ROP --> Attackers can hijack function pointers to control execution and bypass DEP (Data Execution Prevention)
+    - We will touch on these advanced concepts later 
+
+- Function Pointers = flexibility in legit programming + a weapon for exploitation 
+- Understanding these concepts allows for adequate defensive measures to be taken 
 
 
