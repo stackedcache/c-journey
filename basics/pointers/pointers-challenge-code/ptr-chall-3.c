@@ -16,7 +16,7 @@ int strLen(char* str){
 int main(){
     // Arrays decay to pointers, so we don't need to declare any pointer
     // It is already a pointer
-    char string[] = "STRING LENGTH 18!";
+    char string[] = "STRING LENGTH 17!";
     
     // Here we feed the string array (pointer) to the integer function
     // Setting int len so that the return type is matcheh
