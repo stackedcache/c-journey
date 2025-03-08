@@ -14,7 +14,7 @@ void strCopy(char* dst, char* src){
         *(dst + i) = *(src + i);
     }
     
-    // add one to i to get the index where '\0' is needed
+    // add '\0' to the end of the string
     *(dst + i) = '\0'; 
 }
 
