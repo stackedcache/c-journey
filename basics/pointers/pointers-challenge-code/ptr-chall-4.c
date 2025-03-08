@@ -7,7 +7,8 @@
 
 void strCopy(char* dst, char* src){
     // While i != '\0', copy from src to dst
-    // Add '\0' at i + 1 -- which is the index where '\0' belongs using ptr arithmetic
+    // Add '\0' at the end
+    // Loop stops when \0 is hit, leaving i = the index where '\0' belongs using ptr arithmetic
     int i = 0;
     for(; *(src + i) != '\0'; i++){
         *(dst + i) = *(src + i);
