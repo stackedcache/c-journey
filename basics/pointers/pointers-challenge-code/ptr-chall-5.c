@@ -44,3 +44,33 @@ int main(){
 
     return 0; 
 }
+
+/* LEARNING NOTES
+    
+    I wrote my version without reffering to any notes or doucmentation,
+    to test my knowledge and understanding. It is logically correct and functions correctly. 
+
+    The original string reverse is as follows: 
+    
+    ```C
+    char *strrev(char *str) {
+        char *start = str;
+        char *end = str;
+
+        while (*end) end++;  // Move `end` to the null terminator
+        end--;  // Move back to the last valid character
+
+        while (start < end) {  // Swap until pointers meet
+            char temp = *start;
+            *start++ = *end;
+            *end-- = temp;
+        }
+
+        return str;
+    }
+    ```
+
+    - The main difference is that it uses pointer incrementation directly to find the end and move the pointer back one.
+    - This is slightly more efficient that my version, but only for massive strings.
+
+*/
