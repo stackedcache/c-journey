@@ -207,4 +207,41 @@ int main(){
 }
 ```
 
+## POINTER POST INCREMENTATION 
+
+Here is a concept learned during the reverse string challenge (Challenge 5 in challenge code). 
+
+Take a look at the library implementation of revStr():
+
+```C
+ char *strrev(char *str) {
+        char *start = str;
+        char *end = str;
+
+        while (*end) end++;  // Move `end` to the null terminator
+        end--;  // Move back to the last valid character
+
+        while (start < end) {  // Swap until pointers meet
+            char temp = *start;
+            *start++ = *end;
+            *end-- = temp;
+        }
+
+        return str;
+    }
+```
+
+- Notice the syntax: `*start++ = *end;`
+    - This does NOT mean move start first, and then assign.
+    - It means, assign first, THEN move the pointer forward. 
+    - **Execution Order:**
+        1. Dereference start (`*start`) -> Get the value at start
+        2. Dereference end (`*end`) -> Get the value at end 
+        3. Assign `*end` to `*start`
+        4. Move start forward (`start++`) after assignment
+
+    - This is different than *(ptr++) = something;
+        - Here, the pointer moves first before assignment 
+        - This is C's post increment behavior and syntax 
+
 
