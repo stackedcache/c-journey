@@ -5,28 +5,26 @@
 // Use pointer arithmetic 
 
 int findMax(int* arr, int size){
+    // Create a pointer to increment starting at the beginning of arr
     int* current = arr;
+
+    // Create an int to hold the max value 
     int max = 0;
-    int count = 0;
-    while (count < size){
-        // printf("COUNT: %d\n", count);
-    
+
+    // Loop through the array, until current is equal to the last value of arr
+    while (current != arr + size){
+        
+        // Set the value of max to current, if current is greater than existing value
         if (*current > max){max = *current;};
         current++;
-        // printf("Max: %d\n", max);
 
-        count++;
     };  
-
-
-
+    
     return max;
 }
 
-
-
 int main(){
-    int arr[] = {2, 25, 45, 13, 55};
+    int arr[] = {2, 25, 45, 13, 55, 54, 345, 1000};
     
     // Find Size 
     int size = sizeof(arr) / sizeof(int);
