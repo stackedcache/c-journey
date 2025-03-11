@@ -144,4 +144,26 @@ int main(){
     
     - It is not much different than mine, but maybe slightly more readable, and 0 debug prints (obviously).
     - I am happy with what I have learned, and will leave things as is for now. Enjoy! 
+    
+    - Note regarding copy of '\0'
+    - There is a small chance that my implementation may not copy \0 where expected 
+    - The better, and standard practice way is to do the while loop as done in the library implementation 
+
+    ```
+    while((*copy++ = *str++));
+    ```
+
+    - This includes \0 automatically 
+    - Is cleaner and does not require manually adding the \0. 
+
+    - As previously mentioned, I will leave the code as is, to illustrate to my self and others this pointer learning process. 
+    - Now I know it is possible to just copy one dereferenced pointer to another, until reaching the end with: 
+
+    ```
+    while((*copy++ = *str++));
+    ```
+
+    - This while is saying that while there is value in *copy, set *str equal to this value, then increment each pointer onc
+    value of the pointer type forward in memory. In our case, one byte because it is a character pointer. 
+
 */
