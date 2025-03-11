@@ -3,3 +3,4 @@ build/
 notes/
 *.bin
 *.swp
+*.bak
