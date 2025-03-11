@@ -22,7 +22,6 @@ int compareDesc(int a, int b){
 void sort(int* arr, int size, int (*compare)(int, int)){
     // We need to pass over the array multiple times
     // Check two values at a time, and swap if 'a' is larger than 'b'
-    int* original = arr;
     int* current = arr; // Set pointer to increment 
     int* next = (arr + 1); // Set next to compare
     
@@ -48,12 +47,10 @@ void sort(int* arr, int size, int (*compare)(int, int)){
         if(swapped == 0){break;} // if swapped is 0, it means that no swap was needed 
 
         pass++;
-        current = original;
-        next = (original + 1);
+        current = arr;
+        next = (arr + 1);
     } // End outer for loop
 
-    // Set arr back to original position in memory
-    arr = original;
 }
 
 
