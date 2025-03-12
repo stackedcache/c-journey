@@ -25,14 +25,12 @@ void sort(int* arr, int size, int (*compare)(int, int)){
     int* current = arr; // Set pointer to increment 
     int* next = (arr + 1); // Set next to compare
     
-    int pass = 0;
-    
     // Loop through the array
     for(int i = 0; i < (size - 1); i++){
     
         int swapped = 0; // Set a flag to check if a swap occurs 
         
-        for(int j = 0; j < (size - pass - 1); j++){
+        for(int j = 0; j < (size - i - 1); j++){
             if(compare(*current, *next) > 0){
                 int temp = *current;
                 *current = *next;
@@ -46,7 +44,6 @@ void sort(int* arr, int size, int (*compare)(int, int)){
         
         if(swapped == 0){break;} // if swapped is 0, it means that no swap was needed 
 
-        pass++;
         current = arr;
         next = (arr + 1);
     } // End outer for loop
