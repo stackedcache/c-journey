@@ -1,6 +1,8 @@
 # It's Getting Real...
 
-In this section you will find three .c programs, and another .md file named 'challenges.md'
+In this section you will find notes, three .c programs, and another .md file named 'challenges.md'
+
+Start with the notes file and then move on to completing the challenges, or make your own challenges.
 
 The challenges file lists each "challenge" I went through after doing basic study on how program control flow works in C. 
 
