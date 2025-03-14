@@ -89,6 +89,123 @@ int main(){
 - Allows dynamic allocation of memory for structs (network buffers, working with the heap)
 - userPtr1-> is notation for accessing struct members when using pointers. 
 
+## ARRAYS OF STRUCTS 
+
+**What is an Array of Structs?**
+
+- An array of structs is a collection of multiple struct objects stored in contiguous memory. 
+- Instead of managing multiple variables individually, we group similar objects together. 
+- Useful for storing multiple, students, cars, network packets, etc. 
+
+**DECLARING AN ARRAY OF STRUCTS:**
+
+```C
+struct Student{
+    char name[20];
+    int grade;
+};
+
+struct Student students[3]; // creates an array of 3 student structs.
+```
+
+- Each element in `students[]` is a struct Student 
+- Just like an array of `int` or `char`, it's stored in contiguous memory. 
+
+### ASSIGNING VALUES TO STUCT ARRAY ELEMENTS 
+
+- *Note:* Since char name[20] is a character array, we must use `strcpy()` for assignment.
+
+```C
+#include <stdio.h>
+#include <string.h>
+
+struct Student {
+    char name[20];
+    int grade;
+};
+
+int main() {
+    struct Student students[2];  // Declare an array of structs
+
+    // Assign values (Use strcpy for name)
+    strcpy(students[0].name, "John");
+    students[0].grade = 85;
+
+    strcpy(students[1].name, "Eric");
+    students[1].grade = 99;
+
+    // Print values
+    for (int i = 0; i < 2; i++) {
+        printf("Student %d: Name: %s, Grade: %d\n", i + 1, students[i].name, students[i].grade);
+    }
+
+    return 0;
+}
+```
+
+#### ASSIGNING VALUES TO STRUCT ARRAY AT INITILIZATION 
+
+- If you already know the values at compile-time, you can initialize directly: 
+
+```C
+struct Student students[3] = {
+    {"John", 85},
+    {"Eric", 99},
+    {"Lisa", 92}
+};
+```
+
+- This avoids `strcpy()` since it's set at declaration. 
+
+#### ARRAY OF STRUCTS WITH DYNAMIC MEMORY 
+
+- To allocate an array of structs dynamically, use `malloc()`
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct Student {
+    char name[20];
+    int grade;
+};
+
+int main() {
+    int numStudents = 2;
+    
+    // Allocate array dynamically
+    struct Student *students = malloc(numStudents * sizeof(struct Student));
+
+    // Assign values
+    strcpy(students[0].name, "John");
+    students[0].grade = 85;
+
+    strcpy(students[1].name, "Eric");
+    students[1].grade = 99;
+
+    // Print values
+    for (int i = 0; i < numStudents; i++) {
+        printf("Student %d: Name: %s, Grade: %d\n", i + 1, students[i].name, students[i].grade);
+    }
+
+    // Free memory
+    free(students);
+    return 0;
+}
+```
+**Summary (Best Practices)**
+
+- Use strcpy() to assign string values in structs (char name[20]).
+- Use a for loop to iterate over struct arrays (students[i].name).
+- Use malloc() for dynamic struct arrays (struct Student *students = malloc(...)).
+- Free dynamically allocated memory to avoid leaks.
+
+
 ## MORE ADVANCED STRUCT USAGE 
 
+1. Nested Structs (Structs inside structs, for complex data structures)
+2. Pointers to Structs (Dynamic allocation, linked lists, efficient memory use)
+3. Bitfields (Packing small data to save memory, used in networking & OS)
+4. Struct Packing & Alignment (Memory optimization, struct exploi
 
