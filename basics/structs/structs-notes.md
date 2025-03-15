@@ -426,3 +426,9 @@ struct __attribute((packed)) Packed {
 - Exploits often depend on precise memory layout -- packing helps make memory layout predictable. 
 
 
+## FINAL NOTES 
+
+- Linked lists, Unions in structs, functions in structs, etc. may be confusing now, but as we get 
+deeper in to OS internals, reverse engineering, etc. they will become clearer through practice. 
+
+- For now, this is about 95% of what is needed for a basic understanding of C, which is fit for this basics section. 
