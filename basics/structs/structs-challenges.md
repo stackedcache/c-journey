@@ -1,5 +1,4 @@
 # Challenges: Structs (C Basics)
-
 1. Simple Struct Definition (Account Info)
 
     Create a struct named Account with:
