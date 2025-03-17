@@ -1,4 +1,6 @@
 #include <stdio.h> 
+// Create a struct that mimics TCP headers 
+// Print values cleanly
 
 struct Packet {
     unsigned short source_port;
