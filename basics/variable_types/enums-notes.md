@@ -8,9 +8,9 @@
 
 ```C
 typedef enum {
-    VALUE_1; // Defaults to 0
-    VALUE_2; // 1. . .
-    VALUE_3;
+    VALUE_1, // Defaults to 0
+    VALUE_2, // 1. . .
+    VALUE_3
 } ExampleEnum;
 
 // Define Rank Enum

@@ -352,10 +352,10 @@ int main(){
 #include <stdio.h>
 
 struct NetworkFlags{
-    unsigned int isEncrypted : 1 // 1 bit 
-    unsigned int isCompressed : 1 // 1 bit 
-    unsigned int protocolType : 2 // (00 = TCP, 01 = UDP, etc.)
-    unsigned int reserved : 4 // (unused, but reserved for future use)
+    unsigned int isEncrypted : 1; // 1 bit 
+    unsigned int isCompressed : 1; // 1 bit 
+    unsigned int protocolType : 2; // (00 = TCP, 01 = UDP, etc.)
+    unsigned int reserved : 4; // (unused, but reserved for future use)
 };
 
 int main(){
