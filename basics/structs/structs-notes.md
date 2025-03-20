@@ -380,7 +380,7 @@ int main(){
 
 - Compilers add padding bytes between struct members for performance reasons.
 - This wastes memory and can affect binary exploitation techniques. 
-- `__attribute__((packed))` removes this padding to save space 
+- `__attribute__((packed))__` removes this padding to save space 
 
 **EXAMPLE: Normal Struct with Padding**
 
