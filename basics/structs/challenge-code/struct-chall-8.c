@@ -18,14 +18,15 @@ struct NetFlags{
 typedef enum {
     UDP,
     TCP,
-    OTHER
+    OTHER,
+    UNKNOWN
 } ProtocolType;
 
 int main(){
     // Map enums to strings
-    char *protocolType[] = {"UDP", "TCP", "OTHER"};
+    char *protocolType[] = {"UDP", "TCP", "OTHER", "UNKNOWN"};
 
-    struct NetFlags flags1 = {1, 0, 1};
+    struct NetFlags flags1 = {1, 0, 3};
 
     // Print the flags
     printf("Is Encrypted: %d\n", flags1.isEncrypted);
