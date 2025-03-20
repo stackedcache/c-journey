@@ -5,7 +5,7 @@ Laying the foundation of C programming, one concept at a time, with disciplined 
 
 In this section I will demonstrate basic C concepts. 
 
-Topics to include variable types, arrays and strings, control flow, functions, loops, and pointers.
+Topics to include variable types, arrays and strings, control flow, functions, structs, and pointers.
 
 For each topic, I will work with AI to study the concepts, and then have AI assign me challenges.
 
